@@ -1,6 +1,6 @@
 # Define job to build and publish Docker images for multiple components
 build-and-push-docker-images:
-  needs: test-backend
+  needs: CI devops 2023
   # run only when code is compiling and tests are passing
   runs-on: ubuntu-22.04
 
