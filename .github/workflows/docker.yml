@@ -2,8 +2,8 @@ name: Docker push image
 on:
   #to begin you want to launch this job in main and develop
     workflow_run:
-      workflows: ["test-backend"]
-      branches: [CI devops 2023]
+      workflows: ["CI devops 2023"]
+      branches: [main]
       types:
         - Success
 jobs:
