@@ -1,0 +1,39 @@
+# Define job to build and publish Docker images for multiple components
+build-and-push-docker-images:
+  needs: test-backend
+  # run only when code is compiling and tests are passing
+  runs-on: ubuntu-22.04
+
+  # steps to perform in job
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v2.5.0
+
+    - name: Build and push backend image
+      uses: docker/build-push-action@v3
+      with:
+        # relative path to the place where source code with Dockerfile is located
+        context: ./simple-api
+        # Note: tags have to be all lower-case
+        tags:  ${{secrets.DOCKERHUB_USERNAME}}/tp-devops-simple-api:latest
+      env:
+        DOCKER_PASSWORD: ${{secrets.DOCKERHUB_TOKEN}}
+        DOCKER_USERNAME: ${{secrets.DOCKERHUB_USERNAME}}
+
+    - name: Build and push database image
+      uses: docker/build-push-action@v3
+      with:
+        context: ./database
+        tags: ${{secrets.DOCKERHUB_USERNAME}}/tp-devops-database:latest
+      env:
+        DOCKER_PASSWORD: ${{secrets.DOCKERHUB_TOKEN}}
+        DOCKER_USERNAME: ${{secrets.DOCKERHUB_USERNAME}}
+
+    - name: Build and push httpd image
+      uses: docker/build-push-action@v3
+      with:
+        context: ./http-server
+        tags: ${{secrets.DOCKERHUB_USERNAME}}/tp-devops-http:latest
+      env:
+        DOCKER_PASSWORD: ${{secrets.DOCKERHUB_TOKEN}}
+        DOCKER_USERNAME: ${{secrets.DOCKERHUB_USERNAME}}
