@@ -10,8 +10,10 @@ on:
 jobs:
   # Define job to build and publish Docker images for multiple components
   build-and-push-docker-images:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     # run only when code is compiling and tests are passing
     runs-on: ubuntu-22.04
+
     needs: test-backend
     # steps to perform in job
     steps:
