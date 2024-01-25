@@ -1,3 +1,8 @@
+name: Docker push image
+on:
+  #to begin you want to launch this job in main and develop
+  push:
+    branches: main
 # Define job to build and publish Docker images for multiple components
 build-and-push-docker-images:
   needs: test-backend
