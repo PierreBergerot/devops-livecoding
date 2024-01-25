@@ -14,7 +14,6 @@ jobs:
     # run only when code is compiling and tests are passing
     runs-on: ubuntu-22.04
 
-    needs: test-backend
     # steps to perform in job
     steps:
       - name: Login to DockerHub
