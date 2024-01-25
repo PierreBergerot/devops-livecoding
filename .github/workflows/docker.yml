@@ -1,13 +1,14 @@
 name: Docker push image
 on:
   #to begin you want to launch this job in main and develop
-  push:
-    branches: main
-
+    workflow_run:
+      workflows: ["test-backend"]
+      branches: main
+      types:
+        - completed
 jobs:
   # Define job to build and publish Docker images for multiple components
   build-and-push-docker-images:
-    needs: test-backend
     # run only when code is compiling and tests are passing
     runs-on: ubuntu-22.04
 
