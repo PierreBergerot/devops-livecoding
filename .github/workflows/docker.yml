@@ -3,7 +3,7 @@ on:
   #to begin you want to launch this job in main and develop
     workflow_run:
       workflows: ["test-backend"]
-      branches: main
+      branches: [CI devops 2023]
       types:
         - Success
 jobs:
