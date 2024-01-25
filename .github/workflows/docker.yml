@@ -5,7 +5,7 @@ on:
       workflows: ["test-backend"]
       branches: main
       types:
-        - completed
+        - Success
 jobs:
   # Define job to build and publish Docker images for multiple components
   build-and-push-docker-images:
