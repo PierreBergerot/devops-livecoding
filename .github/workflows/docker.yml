@@ -3,6 +3,7 @@ on:
   #to begin you want to launch this job in main and develop
     workflow_run:
       workflows: ["CI devops 2023"]
+      branches: main
       types:
         - completed
 
