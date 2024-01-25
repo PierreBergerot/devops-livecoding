@@ -4,11 +4,11 @@ on:
     workflow_run:
       workflows: ["CI devops 2023"]
       branches: [main]
-      types:
-        - Success
+
 jobs:
   # Define job to build and publish Docker images for multiple components
   build-and-push-docker-images:
+    needs: test-backend
     # run only when code is compiling and tests are passing
     runs-on: ubuntu-22.04
 
